@@ -1,28 +1,143 @@
 #include <stdio.h>
 
 int main() {
-    int n, original, reversed = 0, remainder;
+    int num, temp, rev = 0, rem;
 
     printf("Enter a number: ");
-    scanf("%d", &n);
+    scanf("%d", &num);
 
-    original = n;
+    temp = num;
 
-    if (n < 0) {
-        printf("%d is not a palindrome\n", n);
+    if(num < 0) {
+        printf("Not a palindrome\n");
         return 0;
     }
 
-    while (n != 0) {
-        remainder = n % 10;
-        reversed = reversed * 10 + remainder;
-        n = n / 10;
+    while(num != 0) {
+        rem = num % 10;
+        rev = rev * 10 + rem;
+        num = num / 10;
     }
 
-    if (original == reversed)
-        printf("%d is a palindrome\n", original);
-    else
-        printf("%d is not a palindrome\n", original);
+    if(temp == rev) {
+        printf("Palindrome number\n");
+    }
+    else {
+        printf("Not a palindrome\n");
+    }
 
     return 0;
 }
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int A = 5, B = 117;
+
+    int dist = B - A;
+    if(dist < 0) dist = -dist;
+
+    int moves = (dist + 4) / 5;
+
+    printf("%d", moves);
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    scanf("%d", &num);
+
+    if(num % 3 == 0) {
+        printf("B wins");
+    }
+    else {
+        printf("A wins");
+    }
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int a[5];
+    int i;
+
+    printf("Enter 5 numbers:\n");
+
+    for(i = 0; i < 5; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    printf("Array elements are:\n");
+
+    for(i = 0; i < 5; i++) {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}
+
+------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int a[5];
+    int i, sum = 0;
+
+    printf("Enter 5 numbers:\n");
+
+    for(i = 0; i < 5; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    for(i = 0; i < 5; i++) {
+        sum = sum + a[i];
+    }
+
+    printf("Sum = %d", sum);
+
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main() {
+    int a[5];
+    int i, sum = 0;
+    float avg;
+
+    printf("Enter 5 numbers:\n");
+
+    for(i = 0; i < 5; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    for(i = 0; i < 5; i++) {
+        sum = sum + a[i];
+    }
+
+    avg = sum / 5.0;
+
+    printf("Average = %.2f", avg);
+
+    return 0;
+}
+
+-------------------------------------------------------------------------------------------------------------
