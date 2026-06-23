@@ -1,0 +1,133 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+void inorder(struct TreeNode* root, int* result, int* size) {
+    if (root == NULL)
+        return;
+
+    inorder(root->left, result, size);
+    result[(*size)++] = root->val;  
+    inorder(root->right, result, size);
+}
+
+int* inorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = (int*)malloc(100 * sizeof(int));
+    *returnSize = 0;
+
+    inorder(root, result, returnSize);
+
+    return result;
+}
+
+----------------------------------------------------------------------------------------------------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+void flatten(struct TreeNode* root) {
+    if (root == NULL)
+        return;
+
+    flatten(root->left);
+    flatten(root->right);
+
+    struct TreeNode* left = root->left;
+    struct TreeNode* right = root->right;
+
+    root->left = NULL;
+    root->right = left;
+
+    struct TreeNode* curr = root;
+    while (curr->right)
+        curr = curr->right;
+
+    curr->right = right;
+}
+-----------------------------------------------------------------------------------------------------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+void postorder(struct TreeNode* root, int* result, int* size) {
+    if (root == NULL)
+        return;
+
+    postorder(root->left, result, size);
+    postorder(root->right, result, size);
+    result[(*size)++] = root->val;
+}
+
+int* postorderTraversal(struct TreeNode* root, int* returnSize) {
+    int* result = (int*)malloc(1000 * sizeof(int));
+    *returnSize = 0;
+
+    postorder(root, result, returnSize);
+
+    return result;
+}
+-----------------------------------------------------------------------------------------------------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
+    if (root == NULL) {
+        *returnSize = 0;
+        *returnColumnSizes = NULL;
+        return NULL;
+    }
+
+    struct TreeNode* queue[2000];
+    int front = 0, rear = 0;
+
+    queue[rear++] = root;
+
+    int** result = (int**)malloc(2000 * sizeof(int*));
+    *returnColumnSizes = (int*)malloc(2000 * sizeof(int));
+    *returnSize = 0;
+
+    while (front < rear) {
+        int levelSize = rear - front;
+
+        result[*returnSize] = (int*)malloc(levelSize * sizeof(int));
+        (*returnColumnSizes)[*returnSize] = levelSize;
+
+        for (int i = 0; i < levelSize; i++) {
+            struct TreeNode* node = queue[front++];
+
+            result[*returnSize][i] = node->val;
+
+            if (node->left)
+                queue[rear++] = node->left;
+
+            if (node->right)
+                queue[rear++] = node->right;
+        }
+
+        (*returnSize)++;
+    }
+
+    return result;
+}
+-----------------------------------------------------------------------------------------------------------
