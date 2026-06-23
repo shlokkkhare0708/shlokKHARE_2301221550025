@@ -1,106 +1,115 @@
-/* 1. Grade Calculator */
-#include <stdio.h>
-#include <limits.h>
+1. If-Else ladder...
 
-void gradeCalculator() {
-    int marks;
+import java.util.Scanner;
 
-    printf("Enter Marks: ");
-    scanf("%d", &marks);
+public class GradeCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-    if (marks >= 40 && marks <= 49)
-        printf("Grade: D\n");
-    else if (marks >= 50 && marks <= 59)
-        printf("Grade: D+\n");
-    else if (marks >= 60 && marks <= 69)
-        printf("Grade: C\n");
-    else if (marks >= 70 && marks <= 75)
-        printf("Grade: C+\n");
-    else if (marks >= 76 && marks <= 80)
-        printf("Grade: B+\n");
-    else if (marks >= 81 && marks <= 96)
-        printf("Grade: A\n");
-    else if (marks > 96)
-        printf("Grade: A+\n");
-    else
-        printf("Fail\n");
-}
------------------------------------------------------------------------------------------------------------------
-/* 2. Pattern 1 */
-void pattern1() {
-    int i, j;
+        System.out.print("Enter Marks: ");
+        int marks = sc.nextInt();
 
-    for (i = 1; i <= 5; i++) {
-        for (j = 1; j <= 5; j++) {
-            printf("* ");
+        if (marks >= 40 && marks <= 49) {
+            System.out.println("Grade: D");
         }
-        printf("\n");
+        else if (marks >= 50 && marks <= 59) {
+            System.out.println("Grade: D+");
+        }
+        else if (marks >= 60 && marks <= 69) {
+            System.out.println("Grade: C");
+        }
+        else if (marks >= 70 && marks <= 75) {
+            System.out.println("Grade: C+");
+        }
+        else if (marks >= 76 && marks <= 80) {
+            System.out.println("Grade: B+");
+        }
+        else if (marks >= 81 && marks <= 87) {
+            System.out.println("Grade: A");
+        }
+        else if (marks >= 88 && marks <= 96) {
+            System.out.println("Grade: A");
+        }
+        else if (marks > 96) {
+            System.out.println("Grade: A+");
+        }
+        else {
+            System.out.println("Fail");
+        }
+
+        sc.close();
     }
 }
-------------------------------------------------------------------------------------------------------------------
-/* 3. Pattern 2 */
-void pattern2() {
-    int i, j;
 
-    for (i = 1; i <= 5; i++) {
-        for (j = 1; j <= i; j++) {
-            printf("* ");
+-------------------------------------------------------------------------------
+
+2. Pattern 1...
+
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+
+class Main {
+    public static void main(String[] args) {
+        for(int i=1; i<=5; i++)
+        {
+            for(int j=1; j<=5; j++)
+            {
+                System.out.print("* ");
+            }
+            System.out.println();
         }
-        printf("\n");
     }
 }
----------------------------------------------------------------------------------------------------------------------
-/* 4. Reverse Integer */
-int reverseInteger(int x) {
-    int rev = 0;
 
-    while (x != 0) {
-        int lastDigit = x % 10;
+-----------------------------------------------------------------------------------
 
-        if (rev > INT_MAX / 10 || rev < INT_MIN / 10) {
+3. Pattern 2...
+
+*
+* *
+* * *
+* * * *
+* * * * *
+
+class Main {
+    public static void main(String[] args) {
+        for(int i=1; i<=5; i++)
+        {
+            for(int j=1; j<=i; j++)
+            {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------
+
+4. Reverse Integer(LeetCode problem 7)...
+
+class Solution {
+    public int reverse(int x) {
+        int min = Integer.MIN_VALUE;
+        int max = Integer.MAX_VALUE;
+        
+        if(x == min || x == max){
             return 0;
         }
-
-        rev = rev * 10 + lastDigit;
-        x = x / 10;
+        int rev = 0;
+        while(x != 0)
+        {
+            int lastDigit = x%10;
+            if(rev>max/10 || rev<min/10){
+                return 0;
+            }
+            rev = rev * 10 + lastDigit;
+            x = x/10;
+        }
+        return rev;
     }
-
-    return rev;
 }
-
-int main() {
-    int choice, num;
-
-    printf("1. Grade Calculator\n");
-    printf("2. Pattern 1\n");
-    printf("3. Pattern 2\n");
-    printf("4. Reverse Integer\n");
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
-
-    switch (choice) {
-        case 1:
-            gradeCalculator();
-            break;
-
-        case 2:
-            pattern1();
-            break;
-
-        case 3:
-            pattern2();
-            break;
-
-        case 4:
-            printf("Enter an integer: ");
-            scanf("%d", &num);
-            printf("Reversed Integer: %d\n", reverseInteger(num));
-            break;
-
-        default:
-            printf("Invalid Choice\n");
-    }
-
-    return 0;
-}
---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
